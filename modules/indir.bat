@@ -1,11 +1,9 @@
 @echo off
+setlocal enabledelayedexpansion
+
 echo.
-set /p link="Link: "
-set /p ad="Kaydedilecek isim (orn: dosya.zip): "
-echo Indiriliyor...
-powershell -Command "Invoke-WebRequest -Uri '%link%' -OutFile '%ad%'"
-echo Dosya aciliyor...
-if not exist "Downloads" mkdir "Downloads"
-echo Acilıyor... (Windows Explorer ile)
-explorer "%ad%"
+set /p url="Indir linki: "
+set /p filename="Kaydedilecek isim: "
+bitsadmin /transfer MemoDownload /download /resume "%url%" "%cd%\%filename%"
+echo Dosya indirildi!
 pause

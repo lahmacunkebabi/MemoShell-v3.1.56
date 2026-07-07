@@ -1,10 +1,11 @@
 @echo off
+setlocal enabledelayedexpansion
+
 echo.
-set /p sil_yol="Silinecek yol: "
-if exist "%sil_yol%" (
-    echo Siliniyor...
-    rd /s /q "%sil_yol%" 2>nul || del /f /q "%sil_yol%"
-    echo Islem tamamlandi.
+set /p filepath="Silinecek dosya/klasor yolu: "
+if exist "%filepath%" (
+    del /q "%filepath%" 2>nul || rmdir /s /q "%filepath%" 2>nul
+    echo Silme islemi tamamlandi!
 ) else (
     echo Hata: Yol bulunamadi!
 )
